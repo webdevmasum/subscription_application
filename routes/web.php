@@ -3,6 +3,7 @@
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Cashier\Http\Controllers\WebhookController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,14 @@ Route::middleware('auth')->group(function () {
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    // Route::post('/stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
+
+
+Route::post(
+    '/stripe/webhook',
+    [WebhookController::class, 'handleWebhook']
+)->name('cashier.webhook');
 
 });
 
