@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Plan;
 
 class PlanSeeder extends Seeder
 {
@@ -17,5 +18,9 @@ class PlanSeeder extends Seeder
             ["name" => "advanced", "stripe_plan_id" => "prod_S6Z6BqbKcE1hnU", "stripe_price_id" => "price_1RCLyaGEF1Q9fsWzp491hAUq"],
             ["name" => "premium", "stripe_plan_id" => "prod_S6Z74GFPcHnupD", "stripe_price_id" => "price_1RCLzNGEF1Q9fsWz6zBaWUUz"],
         ];
+
+        foreach ($plans as $plan) {
+            Plan::create($plan);
+        }
     }
 }
