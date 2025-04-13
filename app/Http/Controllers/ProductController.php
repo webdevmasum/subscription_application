@@ -15,4 +15,23 @@ class ProductController extends Controller
     {
         return view('products.create');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+        ]);
+
+        $product = new Product([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+        ]);
+
+        $product->save();
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+    }
 }
