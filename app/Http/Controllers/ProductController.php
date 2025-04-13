@@ -63,4 +63,11 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
+
+    public function status (Product $product)
+    {
+        $product->status = !$product->status;
+        $product->save();
+        return redirect()->back()->with('success', 'Product status updated');
+    }
 }
